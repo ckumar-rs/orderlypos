@@ -23,6 +23,7 @@ const appPaths = [
   "/pos/:path*",
   "/kds",
   "/kds/:path*",
+  "/kiosk",
   "/kiosk/:path*",
   "/orders",
   "/orders/:path*",
@@ -54,6 +55,7 @@ const appPaths = [
   "/agent",
   "/agent/:path*",
   "/customer-display",
+  "/customer-display/:path*",
   "/guest/:path*",
   "/order/:path*",
 ];
