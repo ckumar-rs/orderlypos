@@ -1,6 +1,6 @@
 import type { NextConfig } from "next";
 
-const app = process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, "");
+const app = (process.env.NEXT_PUBLIC_APP_URL ?? "https://orderlypos-ui.vercel.app").replace(/\/$/, "");
 
 const marketingPages = [
   "/features",
