@@ -10,7 +10,7 @@ import { publicMeta } from "@/lib/seo";
 export const metadata: Metadata = publicMeta(
   "/orderlyPOS",
   "OrderlyPOS | Agentic restaurant POS",
-  "OrderlyPOS runs the till, the kitchen, the tables, and a guest kiosk on a computer in the restaurant. Ask reads that service after close. Plans start at ₹499 a month.",
+  "OrderlyPOS is the restaurant system for the till, the kitchen, the floor, and the guest. A guest orders from a table QR, a kiosk, or a WhatsApp catalog. Plans start at ₹2,999 a month.",
   false,
 );
 
@@ -29,7 +29,7 @@ const index = [
   },
   {
     title: "Plans",
-    body: "From ₹499 a month. Yearly billing is 20% less. Pro includes the self-order kiosk.",
+    body: "From ₹2,999 a month. Yearly billing is 20% less. Pro includes the self-order kiosk.",
     href: "/orderlyPOS/pricing",
     label: "See plans",
   },
@@ -37,7 +37,7 @@ const index = [
 
 export default function SitePage() {
   return (
-    <SiteFrame>
+    <SiteFrame page={{ path: "/orderlyPOS", name: "OrderlyPOS" }}>
       <section className="mx-auto max-w-6xl px-5 pt-16 pb-6 text-center sm:px-6 sm:pt-24">
         <HeroLogo size={56} />
         <p className="mt-8 text-sm font-medium text-primary">Agentic Restaurant POS</p>
@@ -48,8 +48,9 @@ export default function SitePage() {
           For a cafe or food truck, a dining room, a kiosk, or a group of branches.
         </p>
         <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-          Staff run the till and the kitchen. Ask reads that service. Every five minutes, a paid
-          bill, low stock, or today’s reservations can still reach the owner when the screen is empty.
+          OrderlyPOS is the restaurant system for the till, the kitchen, the floor, and the guest. A
+          guest orders from a table QR, a kiosk, or a WhatsApp catalog. Staff run the rest from one
+          sign-in. Ask reads that service and does not take a payment.
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-x-2 gap-y-3">
           <Link

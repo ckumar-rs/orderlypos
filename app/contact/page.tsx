@@ -34,13 +34,13 @@ const paths = [
     label: "Company",
     value: "Contrivya",
     href: "https://www.contrivya.com",
-    note: "Plans start at ₹499 a month. The company site is www.contrivya.com.",
+    note: "Plans start at ₹2,999 a month. The company site is www.contrivya.com.",
   },
 ];
 
 export default function ContactPage() {
   return (
-    <SiteFrame>
+    <SiteFrame page={{ path: "/contact", name: "Contact" }}>
       <section className="mx-auto grid max-w-6xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[0.8fr_1.2fr]">
         <div>
           <p className="text-sm text-muted-foreground">Contact</p>

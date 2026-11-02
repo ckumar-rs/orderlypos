@@ -13,7 +13,7 @@ export const metadata: Metadata = publicMeta(
 
 export default function FeaturesPage() {
   return (
-    <SiteFrame>
+    <SiteFrame page={{ path: "/orderlyPOS/features", name: "Features" }}>
       <section className="mx-auto max-w-6xl px-5 pt-16 pb-4 sm:px-6 sm:pt-20">
         <p className="text-sm font-medium text-primary">Product</p>
         <h1 className="mt-3 max-w-3xl text-4xl font-medium tracking-tight text-balance sm:text-5xl">Every screen, and what it is for.</h1>

@@ -18,7 +18,7 @@ function Code({ children }: { children: string }) {
 
 export default function ApiDocsPage() {
   return (
-    <DocPage title="API &amp; MCP" updated="20 August 2026">
+    <DocPage title="API &amp; MCP" path="/docs/api" updated="20 August 2026">
       <DocSection heading="Two ways to connect">
         <p>
           OrderlyPOS exposes two separate integrations, each with its own kind of API key, both managed from{" "}

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteFrame } from "@/components/site/site-frame";
-import { publicMeta } from "@/lib/seo";
+import { publicMeta, siteUrl } from "@/lib/seo";
 
 export const metadata: Metadata = publicMeta(
   "/orderlyPOS/blog",
@@ -27,9 +27,29 @@ const posts = [
   },
 ];
 
+function NotesJsonLd() {
+  const origin = siteUrl();
+  const graph = {
+    "@context": "https://schema.org",
+    "@graph": posts.map((post) => ({
+      "@type": "Article",
+      headline: post.title,
+      datePublished: "2026-10-27",
+      dateModified: "2026-10-27",
+      description: post.body,
+      image: `${origin}/opengraph-image`,
+      mainEntityOfPage: `${origin}/orderlyPOS/blog`,
+      author: { "@type": "Organization", name: "Contrivya", url: "https://www.contrivya.com" },
+      publisher: { "@id": "https://www.contrivya.com/#organization" },
+    })),
+  };
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(graph) }} />;
+}
+
 export default function BlogPage() {
   return (
-    <SiteFrame>
+    <SiteFrame page={{ path: "/orderlyPOS/blog", name: "Notes" }}>
+      <NotesJsonLd />
       <section className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
         <p className="text-sm text-muted-foreground">Blog</p>
         <h1 className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">Notes from the build.</h1>

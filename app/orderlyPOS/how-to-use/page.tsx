@@ -38,15 +38,16 @@ const steps = [
 
 export default function HowToUsePage() {
   return (
-    <SiteFrame>
+    <SiteFrame page={{ path: "/orderlyPOS/how-to-use", name: "How to use" }}>
       <section className="mx-auto max-w-6xl px-5 py-16 sm:px-6 sm:py-20">
         <p className="text-sm font-medium text-primary">How to use</p>
         <h1 className="mt-3 max-w-3xl text-4xl font-medium tracking-tight text-balance sm:text-5xl">
           One service, from the door to the drawer.
         </h1>
         <p className="mt-4 max-w-2xl text-muted-foreground">
-          This is the path a floor uses on a busy night. The longer reference for the API,
-          accessibility, and India receipts is in the docs.
+          Sign in on the restaurant computer, seat a table or start a takeaway, ring the order, cook
+          one step at a time, print the bill, then take the money. Printing the bill does not close
+          the table. The longer reference for the API, accessibility, and India receipts is in the docs.
         </p>
         <ol className="mt-10 flex flex-col gap-4">
           {steps.map((step, index) => (

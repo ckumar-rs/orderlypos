@@ -54,7 +54,7 @@ const guides = [
 
 export default function SiteDocsPage() {
   return (
-    <SiteFrame>
+    <SiteFrame page={{ path: "/orderlyPOS/docs", name: "Guides" }}>
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
         <p className="text-sm text-muted-foreground">Docs</p>
         <h1 className="mt-3 max-w-3xl text-4xl font-semibold tracking-tight sm:text-5xl">

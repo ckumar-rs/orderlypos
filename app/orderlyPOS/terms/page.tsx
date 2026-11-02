@@ -50,7 +50,7 @@ const sections = [
 
 export default function TermsPage() {
   return (
-    <SiteFrame>
+    <SiteFrame page={{ path: "/orderlyPOS/terms", name: "Terms" }}>
       <section className="mx-auto max-w-5xl px-4 pt-12 pb-16">
         <p className="text-sm text-muted-foreground">27 October 2026</p>
         <h1 className="mt-3 max-w-2xl text-4xl font-semibold tracking-tight">Terms and conditions</h1>

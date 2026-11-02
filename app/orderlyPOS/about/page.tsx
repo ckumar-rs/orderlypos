@@ -8,12 +8,12 @@ import { publicMeta } from "@/lib/seo";
 export const metadata: Metadata = publicMeta(
   "/orderlyPOS/about",
   "About",
-  "OrderlyPOS is an agentic restaurant POS made by Contrivya. It runs on a computer in the restaurant. Plans start at ₹499 a month.",
+  "OrderlyPOS is an agentic restaurant POS made by Contrivya. It runs on a computer in the restaurant. Plans start at ₹2,999 a month.",
 );
 
 export default function AboutPage() {
   return (
-    <SiteFrame>
+    <SiteFrame page={{ path: "/orderlyPOS/about", name: "About" }}>
       <section className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2">
         <div>
           <p className="text-sm text-muted-foreground">About</p>
@@ -23,7 +23,7 @@ export default function AboutPage() {
           <p className="mt-4 text-muted-foreground">
             OrderlyPOS is an Agentic Restaurant POS for the till, the kitchen, the floor, and the books.
             The floor runs service. The same books are checked every five minutes after close.
-            Contrivya builds it. Plans start at ₹499 a month. The company site is www.contrivya.com.
+            Contrivya builds it. Plans start at ₹2,999 a month. The company site is www.contrivya.com.
           </p>
         </div>
         <ul className="flex flex-col divide-y divide-border border-y border-border">
@@ -57,7 +57,7 @@ export default function AboutPage() {
           <li className="px-6 py-5">
             <p className="text-xs font-medium tracking-wide text-muted-foreground uppercase">Plans</p>
             <a href="/orderlyPOS/pricing" className="mt-2 block text-lg font-medium underline-offset-4 hover:underline">
-              From ₹499 a month
+              From ₹2,999 a month
             </a>
           </li>
         </ul>

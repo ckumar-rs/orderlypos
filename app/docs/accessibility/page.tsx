@@ -10,7 +10,7 @@ export const metadata: Metadata = publicMeta(
 
 export default function AccessibilityPage() {
   return (
-    <DocPage title="Accessibility statement" updated="15 August 2026">
+    <DocPage title="Accessibility statement" path="/docs/accessibility" updated="15 August 2026">
       <DocSection heading="Our target">
         <p>
           OrderlyPOS targets{" "}

@@ -10,7 +10,7 @@ export const metadata: Metadata = publicMeta(
 
 export default function ComplianceIndiaPage() {
   return (
-    <DocPage title="India compliance notes" updated="15 August 2026">
+    <DocPage title="India compliance notes" path="/docs/compliance-india" updated="15 August 2026">
       <DocSection heading="This is not legal advice">
         <p>
           This page explains how OrderlyPOS is built with reference to

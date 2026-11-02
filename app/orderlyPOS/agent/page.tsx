@@ -7,7 +7,7 @@ import { publicMeta } from "@/lib/seo";
 export const metadata: Metadata = publicMeta(
   "/orderlyPOS/agent",
   "Agentic restaurant POS",
-  "Ask reads sales, open orders, late tickets, low stock, and today's reservations. It does not take a payment. A rule can notify the owner every five minutes.",
+  "Ask reads sales, open orders, late tickets, low stock, and today's reservations. It does not take a payment. Settings chooses whether a message waits for a person or goes out on its own.",
 );
 
 const day = [
@@ -19,7 +19,7 @@ const day = [
   {
     mark: "5 min",
     title: "A pass runs whether anyone is signed in.",
-    body: "Every five minutes an active rule looks for a new paid bill, stock at or below its reorder level, or reservations still on today’s book. It can notify the owner, send email, send SMS or WhatsApp once that provider is stored, post a webhook, and open a task.",
+    body: "Every five minutes an active rule looks for a new paid bill, stock at or below its reorder level, or reservations still on today’s book. Settings → How agents run is the owner’s choice. With a person approving each change, email, SMS, WhatsApp, and a webhook wait as a task. With agents sending the change, those go out when the provider is stored. A notice to staff still arrives either way.",
   },
   {
     mark: "After close",
@@ -49,7 +49,7 @@ const steps = [
 
 export default function AgentPage() {
   return (
-    <SiteFrame>
+    <SiteFrame page={{ path: "/orderlyPOS/agent", name: "Agent" }}>
       <section className="mx-auto max-w-6xl px-5 pt-16 pb-20 sm:px-6 sm:pt-20">
         <p className="text-sm font-medium text-primary">Agentic Restaurant POS</p>
         <h1 className="mt-3 max-w-3xl text-4xl font-medium tracking-tight text-balance sm:text-5xl">
