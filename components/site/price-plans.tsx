@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { appUrl } from "@/lib/app-url";
 
 const plans = [
   {
@@ -11,7 +10,7 @@ const plans = [
     lead: "Can begin at no charge while you try it.",
     monthly: 499,
     points: ["Basic billing", "A short menu", "1 terminal"],
-    href: appUrl("/signup"),
+    href: "/signup",
     featured: false,
   },
   {
@@ -20,7 +19,7 @@ const plans = [
     lead: "Everything in Starter, and:",
     monthly: 999,
     points: ["Full billing", "Basic reports", "1–2 devices", "Kitchen display basics"],
-    href: appUrl("/signup"),
+    href: "/signup",
     featured: false,
   },
   {
@@ -29,7 +28,7 @@ const plans = [
     lead: "Everything in Growth, and:",
     monthly: 2499,
     points: ["Several devices", "Kiosk ordering", "Inventory and loyalty", "Priority support"],
-    href: appUrl("/signup"),
+    href: "/signup",
     featured: true,
   },
   {
@@ -276,7 +275,7 @@ export function PricePlans() {
         <h2 className="max-w-xl text-3xl font-medium tracking-tight text-balance sm:text-4xl">
           Try now OrderlyPOS.
         </h2>
-        <TryNow href={appUrl("/signup")} filled />
+        <TryNow href="/signup" filled />
       </div>
     </div>
   );

@@ -5,7 +5,6 @@ import { HeroLogo } from "@/components/site/hero-logo";
 import { ProductFrame } from "@/components/site/product-frame";
 import { ReachUs } from "@/components/site/reach-us";
 import { SiteFrame } from "@/components/site/site-frame";
-import { appUrl } from "@/lib/app-url";
 import { publicMeta } from "@/lib/seo";
 
 export const metadata: Metadata = publicMeta(
@@ -54,7 +53,7 @@ export default function SitePage() {
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-x-2 gap-y-3">
           <Link
-            href={appUrl("/signup")}
+            href="/signup"
             className="inline-flex h-10 items-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground"
           >
             Try now OrderlyPOS
@@ -179,7 +178,7 @@ export default function SitePage() {
           </h2>
           <div className="flex flex-wrap gap-3">
             <Link
-              href={appUrl("/login")}
+              href="/login"
               className="inline-flex h-10 items-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground"
             >
               Sign in

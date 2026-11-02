@@ -1,7 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { Logo } from "@/components/layout/logo";
-import { appUrl } from "@/lib/app-url";
 import { SiteJsonLd } from "@/components/site/site-jsonld";
 
 export function DocPage({
@@ -25,7 +24,7 @@ export function DocPage({
             <Link href="/orderlyPOS" className="text-sm text-muted-foreground hover:text-foreground">
               Site
             </Link>
-            <Link href={appUrl("/signup")} className="inline-flex h-9 items-center rounded-md bg-primary px-3 text-sm font-medium whitespace-nowrap text-primary-foreground">
+            <Link href="/signup" className="inline-flex h-9 items-center rounded-md bg-primary px-3 text-sm font-medium whitespace-nowrap text-primary-foreground">
               Try now OrderlyPOS
             </Link>
           </div>

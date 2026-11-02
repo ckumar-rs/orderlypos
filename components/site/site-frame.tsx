@@ -1,7 +1,6 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { Logo } from "@/components/layout/logo";
-import { appUrl } from "@/lib/app-url";
 import { ReachUs } from "@/components/site/reach-us";
 import { SiteJsonLd } from "@/components/site/site-jsonld";
 import { SiteNav } from "@/components/site/site-nav";
@@ -78,11 +77,11 @@ export function SiteFrame({ children }: { children: ReactNode }) {
           </Link>
           <SiteNav />
           <div className="col-start-3 row-start-1 flex items-center justify-end gap-2">
-            <Link href={appUrl("/login")} className="hidden h-9 items-center px-2 text-sm font-medium sm:inline-flex">
+            <Link href="/login" className="hidden h-9 items-center px-2 text-sm font-medium sm:inline-flex">
               Sign in
             </Link>
             <Link
-              href={appUrl("/signup")}
+              href="/signup"
               className="inline-flex h-9 items-center rounded-md bg-primary px-3 text-sm font-medium whitespace-nowrap text-primary-foreground"
             >
               Try now OrderlyPOS
@@ -102,7 +101,7 @@ export function SiteFrame({ children }: { children: ReactNode }) {
             </div>
             <div className="flex flex-col items-start gap-3 sm:items-end">
               <Link
-                href={appUrl("/signup")}
+                href="/signup"
                 className="inline-flex h-10 shrink-0 items-center rounded-md bg-primary px-4 text-sm font-medium whitespace-nowrap text-primary-foreground"
               >
                 Try now OrderlyPOS

@@ -3,7 +3,6 @@
 import { useEffect, useId, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { appUrl } from "@/lib/app-url";
 import { cn } from "@/lib/utils";
 
 type Item = { href: string; label: string; note: string };
@@ -214,7 +213,7 @@ export function SiteNav() {
                 </li>
               ))}
             </ul>
-            <Link href={appUrl("/login")} className="mt-6 inline-flex py-2 text-base font-medium sm:hidden">
+            <Link href="/login" className="mt-6 inline-flex py-2 text-base font-medium sm:hidden">
               Sign in
             </Link>
           </nav>
