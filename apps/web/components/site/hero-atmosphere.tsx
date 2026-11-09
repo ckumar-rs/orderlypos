@@ -58,11 +58,14 @@ export function HeroProductVisual({
   secondarySrc = "/site/admin-kds.png",
   alt = "OrderlyPOS till and kitchen pass",
   className,
+  compact = false,
 }: {
   primarySrc?: string;
   secondarySrc?: string;
   alt?: string;
   className?: string;
+  /** Smaller stacked frames — for auth brand panel, not the home hero. */
+  compact?: boolean;
 }) {
   const hostRef = useRef<HTMLDivElement>(null);
   const [ready, setReady] = useState(false);
@@ -98,18 +101,23 @@ export function HeroProductVisual({
         aria-hidden
         className="pointer-events-none absolute left-1/2 top-1/2 h-[70%] w-[80%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/15 blur-3xl"
       />
-      {reducedMotion || !ready ? (
+      {compact || reducedMotion || !ready ? (
         <motion.div
           className="relative"
           initial={reducedMotion ? false : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="absolute -left-2 top-6 w-[72%] -rotate-6 opacity-70 sm:-left-6">
+          <div
+            className={cn(
+              "absolute opacity-70",
+              compact ? "-left-1 top-3 w-[68%] -rotate-5" : "-left-2 top-6 w-[72%] -rotate-6 sm:-left-6",
+            )}
+          >
             <ProductFrame src={secondarySrc} alt="" crop />
           </div>
-          <div className="relative ml-auto w-[84%]">
-            <ProductFrame src={primarySrc} alt={alt} priority crop />
+          <div className={cn("relative ml-auto", compact ? "w-[82%]" : "w-[84%]")}>
+            <ProductFrame src={primarySrc} alt={alt} priority={!compact} crop />
           </div>
         </motion.div>
       ) : (
