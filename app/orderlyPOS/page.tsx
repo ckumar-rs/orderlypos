@@ -16,6 +16,7 @@ import { HomeConnectors } from "@/components/site/home-connectors";
 import { HomeFaq } from "@/components/site/home-faq";
 import { HomeIndia } from "@/components/site/home-india";
 import { HomeJumpNav } from "@/components/site/home-jump-nav";
+import { HomeLaunchFilm } from "@/components/site/home-launch-film";
 import { HomeModules } from "@/components/site/home-modules";
 import { HomePlanFinder } from "@/components/site/home-plan-finder";
 import { HomePricingTease } from "@/components/site/home-pricing-tease";
@@ -115,6 +116,7 @@ export default function SitePage() {
       </section>
 
       <HomePromises />
+      <HomeLaunchFilm />
       <HomeJumpNav />
       <HomeProductTabs />
       <HomeModules />
