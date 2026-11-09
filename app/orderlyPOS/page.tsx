@@ -1,16 +1,41 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { AgentTalk } from "@/components/site/agent-talk";
+import { HeroAtmosphere, HeroProductVisual } from "@/components/site/hero-atmosphere";
 import { HeroLogo } from "@/components/site/hero-logo";
+import {
+  HeroIntro,
+  HeroIntroItem,
+  MotionPress,
+  SiteReveal,
+} from "@/components/site/site-motion";
+import { HomeBuiltFor } from "@/components/site/home-built-for";
+import { HomeChannels } from "@/components/site/home-channels";
+import { HomeCompare } from "@/components/site/home-compare";
+import { HomeConnectors } from "@/components/site/home-connectors";
+import { HomeFaq } from "@/components/site/home-faq";
+import { HomeIndia } from "@/components/site/home-india";
+import { HomeJumpNav } from "@/components/site/home-jump-nav";
+import { HomeModules } from "@/components/site/home-modules";
+import { HomePlanFinder } from "@/components/site/home-plan-finder";
+import { HomePricingTease } from "@/components/site/home-pricing-tease";
+import { HomeProductTabs } from "@/components/site/home-product-tabs";
+import { HomePromises } from "@/components/site/home-promises";
+import { HomeResources } from "@/components/site/home-resources";
+import { HomeServiceDay } from "@/components/site/home-service-day";
+import { HomeStartSteps } from "@/components/site/home-start-steps";
+import { HomeStory } from "@/components/site/home-story";
+import { HomeWorkflow } from "@/components/site/home-workflow";
 import { ProductFrame } from "@/components/site/product-frame";
-import { ReachUs } from "@/components/site/reach-us";
 import { SiteFrame } from "@/components/site/site-frame";
+import { SiteRelated } from "@/components/site/site-related";
+import { relatedLearn, relatedProduct } from "@/components/site/site-related-sets";
 import { publicMeta } from "@/lib/seo";
 
 export const metadata: Metadata = publicMeta(
   "/orderlyPOS",
   "OrderlyPOS | Agentic restaurant POS",
-  "OrderlyPOS is the restaurant system for the till, the kitchen, the floor, and the guest. A guest orders from a table QR, a kiosk, or a WhatsApp catalog. Plans start at ₹2,999 a month.",
+  "OrderlyPOS is the restaurant system for phone, tablet, kiosk, and till. Guests order from a table QR, a kiosk, or a WhatsApp catalog. Plans start at ₹2,999 a month.",
   false,
 );
 
@@ -37,67 +62,68 @@ const index = [
 
 export default function SitePage() {
   return (
-    <SiteFrame page={{ path: "/orderlyPOS", name: "OrderlyPOS" }}>
-      <section className="mx-auto max-w-6xl px-5 pt-16 pb-6 text-center sm:px-6 sm:pt-24">
-        <HeroLogo size={56} />
-        <p className="mt-8 text-sm font-medium text-primary">Agentic Restaurant POS</p>
-        <h1 className="mx-auto mt-3 max-w-3xl text-4xl font-medium tracking-tight text-balance sm:text-6xl sm:leading-[1.05]">
-          Open for service. Still checking after close.
-        </h1>
-        <p className="mx-auto mt-4 text-sm font-medium">
-          For a cafe or food truck, a dining room, a kiosk, or a group of branches.
-        </p>
-        <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-          OrderlyPOS is the restaurant system for the till, the kitchen, the floor, and the guest. A
-          guest orders from a table QR, a kiosk, or a WhatsApp catalog. Staff run the rest from one
-          sign-in. Ask reads that service and does not take a payment.
-        </p>
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-x-2 gap-y-3">
-          <Link
-            href="/signup"
-            className="inline-flex h-10 items-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground"
-          >
-            Try now OrderlyPOS
-          </Link>
-          <Link
-            href="/orderlyPOS/features"
-            className="inline-flex h-10 items-center px-4 text-sm font-medium"
-          >
-            See the floor
-          </Link>
-          <Link
-            href="/orderlyPOS/agent"
-            className="inline-flex h-10 items-center px-4 text-sm font-medium"
-          >
-            How the agent works
-          </Link>
-          <Link
-            href="/orderlyPOS/pricing"
-            className="inline-flex h-10 items-center px-4 text-sm font-medium text-muted-foreground"
-          >
-            Plans
-          </Link>
-        </div>
-        <ReachUs className="mt-4 justify-center" />
+    <SiteFrame
+      page={{ path: "/orderlyPOS", name: "OrderlyPOS" }}
+      ctaTitle="Run service on phone, tablet, kiosk, or till."
+      ctaBody="Creating an account does not charge a card. Plans start at ₹2,999 a month."
+    >
+      <section className="relative isolate overflow-hidden lg:min-h-[min(100svh,58rem)]">
+        <HeroAtmosphere />
+        <HeroIntro className="relative z-10 mx-auto grid max-w-6xl items-center gap-8 px-5 pt-12 pb-10 sm:px-6 sm:pt-16 lg:min-h-[min(100svh,58rem)] lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.1fr)] lg:gap-6 lg:py-20">
+          <HeroIntroItem className="text-left max-lg:text-center">
+            <div className="inline-flex items-center gap-3 max-lg:mx-auto">
+              <HeroLogo size={48} />
+            </div>
+            <p className="mt-6 text-sm font-semibold tracking-[0.16em] text-primary uppercase sm:mt-8">
+              OrderlyPOS
+            </p>
+            <h1 className="mt-3 max-w-xl text-4xl font-medium tracking-tight text-balance sm:text-5xl lg:text-[3.55rem] lg:leading-[1.04]">
+              Service that stays sharp from first cover to last drawer.
+            </h1>
+            <p className="mt-4 max-w-md text-base leading-relaxed text-muted-foreground sm:mt-5 sm:text-lg max-lg:mx-auto">
+              Phone, tablet, kiosk, and till. One sign-in for kitchen, floor, and guest QR. Ask reads
+              the night — staff still ring the bill.
+            </p>
+            <div className="mt-8 flex flex-wrap items-center gap-4 max-lg:justify-center sm:mt-10">
+              <MotionPress>
+                <Link
+                  href="/signup"
+                  className="inline-flex h-12 items-center rounded-md bg-primary px-7 text-sm font-semibold text-primary-foreground shadow-[0_14px_36px_-12px_rgba(242,101,27,0.9)]"
+                >
+                  Try now OrderlyPOS
+                </Link>
+              </MotionPress>
+              <p className="text-sm text-muted-foreground">
+                From ₹2,999 / month ·{" "}
+                <Link
+                  href="/orderlyPOS/pricing"
+                  className="font-medium text-foreground underline-offset-4 hover:underline"
+                >
+                  See plans
+                </Link>
+              </p>
+            </div>
+          </HeroIntroItem>
+          <HeroIntroItem className="w-full">
+            <HeroProductVisual
+              primarySrc="/site/admin-pos.png"
+              secondarySrc="/site/admin-kds.png"
+              alt="OrderlyPOS till in front of the kitchen pass"
+            />
+          </HeroIntroItem>
+        </HeroIntro>
       </section>
 
-      <section className="mx-auto max-w-6xl px-5 pb-8 sm:px-6">
-        <div className="grid items-start gap-4 lg:grid-cols-2">
-          <ProductFrame
-            src="/site/admin-dashboard.png"
-            alt="The service day opens on the dashboard"
-            priority
-            crop
-          />
-          <ProductFrame src="/site/admin-kds.png" alt="The kitchen works one station at a time" crop />
-        </div>
-        <p className="mx-auto mt-4 max-w-2xl text-center text-sm leading-relaxed text-muted-foreground">
-          Today’s revenue, orders, and occupied tables sit beside the kitchen pass. A late ticket is
-          marked. The page refreshes when a bill or a ticket changes.
-        </p>
-      </section>
+      <HomePromises />
+      <HomeJumpNav />
+      <HomeProductTabs />
+      <HomeModules />
+      <HomeChannels />
+      <HomeWorkflow />
+      <HomeServiceDay />
+      <HomeCompare />
 
-      <section className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-20 sm:px-6 lg:grid-cols-2 lg:gap-16">
+      <SiteReveal className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-20 sm:px-6 lg:grid-cols-2 lg:gap-16">
         <div>
           <p className="text-sm font-medium text-primary">Service</p>
           <h2 className="mt-3 text-3xl font-medium tracking-tight text-balance sm:text-4xl">
@@ -115,10 +141,10 @@ export default function SitePage() {
         <div className="mx-auto w-full max-w-md">
           <ProductFrame src="/site/admin-pos.png" alt="A table opens the live menu" crop />
         </div>
-      </section>
+      </SiteReveal>
 
       <section className="border-y border-border">
-        <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-20 sm:px-6 lg:grid-cols-2 lg:gap-16">
+        <SiteReveal className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-20 sm:px-6 lg:grid-cols-2 lg:gap-16">
           <div className="mx-auto w-full max-w-xl lg:order-2">
             <AgentTalk embedded />
           </div>
@@ -136,8 +162,11 @@ export default function SitePage() {
               Round the clock
             </Link>
           </div>
-        </div>
+        </SiteReveal>
       </section>
+
+      <HomeBuiltFor />
+      <HomeIndia />
 
       <section className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-20 sm:px-6 lg:grid-cols-2 lg:gap-16">
         <div>
@@ -158,6 +187,13 @@ export default function SitePage() {
         </div>
       </section>
 
+      <HomeConnectors />
+      <HomeStartSteps />
+      <HomePlanFinder />
+      <HomePricingTease />
+      <HomeStory />
+      <HomeResources />
+
       <section className="border-t border-border" aria-label="Where to go next">
         <ul className="mx-auto grid max-w-6xl lg:grid-cols-3">
           {index.map((item) => (
@@ -172,27 +208,11 @@ export default function SitePage() {
         </ul>
       </section>
 
-      <section className="border-t border-border">
-        <div className="mx-auto flex max-w-6xl flex-col gap-6 px-5 py-20 sm:px-6 sm:flex-row sm:items-end sm:justify-between">
-          <h2 className="max-w-xl text-3xl font-medium tracking-tight text-balance sm:text-4xl">
-            Run service on the computer in the restaurant.
-          </h2>
-          <div className="flex flex-wrap gap-3">
-            <Link
-              href="/login"
-              className="inline-flex h-10 items-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground"
-            >
-              Sign in
-            </Link>
-            <Link
-              href="/orderlyPOS/pricing"
-              className="inline-flex h-10 items-center rounded-md border border-border px-4 text-sm font-medium"
-            >
-              See plans
-            </Link>
-          </div>
-        </div>
-      </section>
+      <HomeFaq />
+      <SiteRelated
+        title="Explore the product"
+        items={[...relatedProduct, ...relatedLearn.slice(0, 1)]}
+      />
     </SiteFrame>
   );
 }

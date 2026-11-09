@@ -1,8 +1,14 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { Mail, Phone } from "lucide-react";
-import { emailAddress, phoneHref, WhatsAppIcon, whatsappHref, whatsappNumber } from "@/components/site/reach-us";
+import {
+  ContactChannels,
+  MarketingHeroBand,
+} from "@/components/site/marketing-page-band";
+import { emailAddress, whatsappHref } from "@/components/site/reach-us";
+import { SiteFaq } from "@/components/site/site-faq";
 import { SiteFrame } from "@/components/site/site-frame";
+import { SitePageHero } from "@/components/site/site-page-hero";
+import { SiteRelated } from "@/components/site/site-related";
+import { relatedCompany, relatedProduct } from "@/components/site/site-related-sets";
 import { publicMeta } from "@/lib/seo";
 
 export const metadata: Metadata = publicMeta(
@@ -11,73 +17,43 @@ export const metadata: Metadata = publicMeta(
   "WhatsApp and phone +91-9346342691. Email info@contrivya.com. OrderlyPOS is made by Contrivya.",
 );
 
-const paths = [
+const faqs = [
   {
-    label: "WhatsApp",
-    value: whatsappNumber,
-    href: whatsappHref,
-    note: "A message to the people who build OrderlyPOS. Useful when you would rather not create an account first.",
+    q: "Is there a call centre?",
+    a: "No. A message reaches the people who build OrderlyPOS at Contrivya.",
   },
   {
-    label: "Phone",
-    value: whatsappNumber,
-    href: phoneHref,
-    note: "Call the same number.",
+    q: "Should I create an account first?",
+    a: "Not required. WhatsApp, phone, or email works before signup. Creating an account does not charge a card.",
   },
   {
-    label: "Email",
-    value: emailAddress,
-    href: `mailto:${emailAddress}`,
-    note: "Setup help, a bug, or a request from the floor. A reply usually goes out within a business day.",
-  },
-  {
-    label: "Company",
-    value: "Contrivya",
-    href: "https://www.contrivya.com",
-    note: "Plans start at ₹2,999 a month. The company site is www.contrivya.com.",
+    q: "Enterprise pricing?",
+    a: "Write to info@contrivya.com with “OrderlyPOS Enterprise” in the subject, or use the pricing page plan finder.",
   },
 ];
 
 export default function ContactPage() {
   return (
-    <SiteFrame page={{ path: "/contact", name: "Contact" }}>
-      <section className="mx-auto grid max-w-6xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[0.8fr_1.2fr]">
-        <div>
-          <p className="text-sm text-muted-foreground">Contact</p>
-          <h1 className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">
-            Write to the people who build it.
-          </h1>
-          <p className="mt-4 text-muted-foreground">
-            OrderlyPOS does not run a call centre. A message reaches the
-            company that maintains the software.
-          </p>
-          <Link href="/orderlyPOS" className="mt-8 inline-block text-sm font-medium text-foreground underline-offset-4 hover:underline">
-            Back to the site
-          </Link>
-        </div>
-        <ul className="flex flex-col divide-y divide-border border-y border-border">
-          {paths.map((path) => (
-            <li key={path.label} className="px-6 py-6">
-              <p className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
-                {path.label}
-              </p>
-              <a
-                href={path.href}
-                className="mt-2 inline-flex items-center gap-2 text-lg font-medium text-foreground underline-offset-4 hover:underline"
-                {...(path.href.startsWith("http")
-                  ? { target: "_blank", rel: "noopener noreferrer" }
-                  : {})}
-              >
-                {path.label === "WhatsApp" ? <WhatsAppIcon className="size-5" /> : null}
-                {path.label === "Phone" ? <Phone className="size-5 shrink-0" aria-hidden="true" /> : null}
-                {path.label === "Email" ? <Mail className="size-5 shrink-0" aria-hidden="true" /> : null}
-                {path.value}
-              </a>
-              <p className="mt-2 text-sm text-muted-foreground">{path.note}</p>
-            </li>
-          ))}
-        </ul>
+    <SiteFrame page={{ path: "/contact", name: "Contact" }} showCta={false}>
+      <MarketingHeroBand>
+        <SitePageHero
+          eyebrow="Contact"
+          title="Write to the people who build it."
+          body="OrderlyPOS does not run a call centre. A message reaches Contrivya — WhatsApp, phone, or email."
+          actions={[
+            { href: whatsappHref, label: "WhatsApp", primary: true },
+            { href: `mailto:${emailAddress}`, label: "Email" },
+            { href: "/signup", label: "Try now OrderlyPOS" },
+          ]}
+        />
+      </MarketingHeroBand>
+
+      <section className="mx-auto max-w-6xl px-5 pb-16 sm:px-6">
+        <ContactChannels />
       </section>
+
+      <SiteFaq title="Before you write" items={faqs} />
+      <SiteRelated items={[relatedProduct[2]!, relatedCompany[0]!, relatedProduct[0]!]} />
     </SiteFrame>
   );
 }

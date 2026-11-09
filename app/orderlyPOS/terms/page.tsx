@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { AnimatedSteps, MarketingHeroBand } from "@/components/site/marketing-page-band";
 import { SiteFrame } from "@/components/site/site-frame";
+import { SitePageHero } from "@/components/site/site-page-hero";
+import { SiteRelated } from "@/components/site/site-related";
+import { SiteReveal } from "@/components/site/site-motion";
 import { publicMeta } from "@/lib/seo";
 
 export const metadata: Metadata = publicMeta(
   "/orderlyPOS/terms",
   "Terms and conditions",
-  "The terms for the OrderlyPOS public site and for a plan you take with Contrivya. The software runs on the restaurant's computer.",
+  "The terms for the OrderlyPOS public site and for a plan you take with Contrivya. The software runs on the restaurant's host.",
 );
 
 const sections = [
@@ -16,7 +20,7 @@ const sections = [
   },
   {
     title: "The software runs in the restaurant",
-    body: "OrderlyPOS is installed on a computer the restaurant controls. Bills, tickets, stock, reservations, staff records, and guest records stay on that computer. Contrivya does not host that database. The restaurant decides who may sign in, which branch they may open, and when a backup is taken.",
+    body: "OrderlyPOS is installed on a host the restaurant controls. Bills, tickets, stock, reservations, staff records, and guest records stay on that host. Contrivya does not host that database. The restaurant decides who may sign in, which branch they may open, and when a backup is taken.",
   },
   {
     title: "Plans and payment",
@@ -24,7 +28,7 @@ const sections = [
   },
   {
     title: "What the restaurant is responsible for",
-    body: "The restaurant is responsible for its guests, its staff, its prices, its tax invoices, and the computer the software runs on. A receipt can show the GSTIN and the tax split once those are stored in Settings. Whether that receipt is the restaurant’s tax invoice is a question for its chartered accountant. Staff accounts, PINs, and passkeys are the restaurant’s to issue and to remove.",
+    body: "The restaurant is responsible for its guests, its staff, its prices, its tax invoices, and the host the software runs on. A receipt can show the GSTIN and the tax split once those are stored in Settings. Whether that receipt is the restaurant’s tax invoice is a question for its chartered accountant. Staff accounts, PINs, and passkeys are the restaurant’s to issue and to remove.",
   },
   {
     title: "What the software will not pretend to do",
@@ -36,7 +40,7 @@ const sections = [
   },
   {
     title: "Stopping",
-    body: "The restaurant may stop a monthly or yearly plan by writing to info@contrivya.com. Fees already paid for a period that has started are not refunded unless Contrivya agrees in that reply. A one-time license, once paid and delivered, stays with the restaurant. Contrivya may suspend a hosted conversation or a support plan if these terms are broken. The software already installed on the restaurant’s computer is not remotely switched off by this page.",
+    body: "The restaurant may stop a monthly or yearly plan by writing to info@contrivya.com. Fees already paid for a period that has started are not refunded unless Contrivya agrees in that reply. A one-time license, once paid and delivered, stays with the restaurant. Contrivya may suspend a hosted conversation or a support plan if these terms are broken. The software already installed on the restaurant’s host is not remotely switched off by this page.",
   },
   {
     title: "Liability",
@@ -51,27 +55,20 @@ const sections = [
 export default function TermsPage() {
   return (
     <SiteFrame page={{ path: "/orderlyPOS/terms", name: "Terms" }}>
-      <section className="mx-auto max-w-5xl px-4 pt-12 pb-16">
-        <p className="text-sm text-muted-foreground">27 October 2026</p>
-        <h1 className="mt-3 max-w-2xl text-4xl font-semibold tracking-tight">Terms and conditions</h1>
-        <p className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground">
-          Contrivya, at www.contrivya.com, offers OrderlyPOS. Questions about these terms go to{" "}
-          <a href="mailto:info@contrivya.com" className="font-medium text-foreground underline-offset-4 hover:underline">
-            info@contrivya.com
-          </a>
-          .
-        </p>
-        <ol className="mt-10 border-t border-border">
-          {sections.map((section, index) => (
-            <li key={section.title} className="grid gap-2 border-b border-border py-5 sm:grid-cols-[3rem_1fr] sm:gap-6">
-              <p className="text-sm tabular-nums text-muted-foreground">{String(index + 1).padStart(2, "0")}</p>
-              <div>
-                <h2 className="text-lg font-semibold tracking-tight">{section.title}</h2>
-                <p className="mt-2 max-w-prose text-sm leading-relaxed text-muted-foreground">{section.body}</p>
-              </div>
-            </li>
-          ))}
-        </ol>
+      <MarketingHeroBand>
+        <SitePageHero
+          eyebrow="27 October 2026"
+          title="Terms and conditions"
+          body="Contrivya, at www.contrivya.com, offers OrderlyPOS. Questions about these terms go to info@contrivya.com."
+          actions={[
+            { href: "/orderlyPOS/privacy", label: "Privacy policy", primary: true },
+            { href: "/orderlyPOS/pricing", label: "Pricing" },
+            { href: "mailto:info@contrivya.com", label: "Email Contrivya" },
+          ]}
+        />
+      </MarketingHeroBand>
+      <SiteReveal className="mx-auto max-w-5xl px-5 pb-16 sm:px-6">
+        <AnimatedSteps items={sections} markKey="index" />
         <p className="mt-8 text-sm text-muted-foreground">
           How personal data is handled is in the{" "}
           <Link href="/orderlyPOS/privacy" className="font-medium text-foreground underline-offset-4 hover:underline">
@@ -83,7 +80,15 @@ export default function TermsPage() {
           </Link>
           .
         </p>
-      </section>
+      </SiteReveal>
+      <SiteRelated
+        title="Related"
+        items={[
+          { href: "/orderlyPOS/privacy", title: "Privacy", body: "What the site collects, and what stays on the restaurant host." },
+          { href: "/orderlyPOS/pricing", title: "Pricing", body: "Published plan prices and yearly billing." },
+          { href: "/contact", title: "Contact", body: "Write to Contrivya about these terms." },
+        ]}
+      />
     </SiteFrame>
   );
 }

@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { AnimatedPosts, MarketingHeroBand } from "@/components/site/marketing-page-band";
 import { SiteFrame } from "@/components/site/site-frame";
+import { SitePageHero } from "@/components/site/site-page-hero";
+import { SiteRelated } from "@/components/site/site-related";
+import { relatedLearn, relatedProduct } from "@/components/site/site-related-sets";
+import { SiteReveal } from "@/components/site/site-motion";
 import { publicMeta, siteUrl } from "@/lib/seo";
 
 export const metadata: Metadata = publicMeta(
@@ -50,21 +55,19 @@ export default function BlogPage() {
   return (
     <SiteFrame page={{ path: "/orderlyPOS/blog", name: "Notes" }}>
       <NotesJsonLd />
-      <section className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
-        <p className="text-sm text-muted-foreground">Blog</p>
-        <h1 className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">Notes from the build.</h1>
-        <p className="mt-4 text-muted-foreground">
-          Short writing from Contrivya about how OrderlyPOS behaves in service. Product changes ship with the software, not as a separate newsroom.
-        </p>
-        <div className="mt-10 flex flex-col gap-6">
-          {posts.map((post) => (
-            <article key={post.title} className="border-b border-border py-6">
-              <p className="text-xs font-medium tracking-wide text-muted-foreground uppercase">{post.date}</p>
-              <h2 className="mt-2 text-2xl font-semibold tracking-tight">{post.title}</h2>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{post.body}</p>
-            </article>
-          ))}
-        </div>
+      <MarketingHeroBand>
+        <SitePageHero
+          eyebrow="Blog"
+          title="Notes from the build."
+          body="Short writing from Contrivya about how OrderlyPOS behaves in service. Product changes ship with the software, not as a separate newsroom."
+          actions={[
+            { href: "/orderlyPOS/docs", label: "Docs", primary: true },
+            { href: "/contact", label: "Ask about a note" },
+          ]}
+        />
+      </MarketingHeroBand>
+      <SiteReveal className="mx-auto max-w-3xl px-5 pb-16 sm:px-6">
+        <AnimatedPosts posts={posts} />
         <p className="mt-8 text-sm text-muted-foreground">
           Questions about a note go to{" "}
           <Link href="/contact" className="font-medium text-foreground underline-offset-4 hover:underline">
@@ -72,7 +75,8 @@ export default function BlogPage() {
           </Link>
           .
         </p>
-      </section>
+      </SiteReveal>
+      <SiteRelated items={[relatedLearn[0]!, relatedProduct[0]!, relatedLearn[1]!]} />
     </SiteFrame>
   );
 }

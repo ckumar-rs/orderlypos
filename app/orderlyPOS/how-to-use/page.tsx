@@ -1,18 +1,24 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { HomePromises } from "@/components/site/home-promises";
+import { AnimatedSteps, MarketingHeroBand } from "@/components/site/marketing-page-band";
+import { SiteFaq } from "@/components/site/site-faq";
 import { SiteFrame } from "@/components/site/site-frame";
+import { SitePageHero } from "@/components/site/site-page-hero";
+import { SiteRelated } from "@/components/site/site-related";
+import { relatedLearn, relatedProduct } from "@/components/site/site-related-sets";
+import { SiteReveal } from "@/components/site/site-motion";
 import { publicMeta } from "@/lib/seo";
 
 export const metadata: Metadata = publicMeta(
   "/orderlyPOS/how-to-use",
   "How to use a restaurant POS",
-  "Sign in on the restaurant computer, seat a table or start a takeaway, ring the order, cook one step at a time, print the bill, then take the money.",
+  "Sign in on phone, tablet, kiosk, or till, seat a table or start a takeaway, ring the order, cook one step at a time, print the bill, then take the money.",
 );
 
 const steps = [
   {
-    title: "Sign in on the restaurant computer",
-    body: "Open the till in the browser on the machine that runs OrderlyPOS. Shared terminals can switch staff with a PIN. Managers can require an authenticator code.",
+    title: "Sign in on any staff device",
+    body: "Open the till in the browser on a phone, tablet, kiosk, or computer. Shared terminals can switch staff with a PIN. Managers can require an authenticator code.",
   },
   {
     title: "Seat the table, or start a takeaway",
@@ -32,40 +38,50 @@ const steps = [
   },
   {
     title: "Close the night on your own books",
-    body: "Count the drawer. The cash close records the variance. Sales, tax, and stock for the shift stay on this computer. Reports can be printed or exported.",
+    body: "Count the drawer. The cash close records the variance. Sales, tax, and stock for the shift stay on the restaurant host. Reports can be printed or exported.",
+  },
+];
+
+const faqs = [
+  {
+    q: "Does printing the bill close the table?",
+    a: "No. Guests can still split or pay in parts. The table frees when payments cover the total.",
+  },
+  {
+    q: "Where does service run?",
+    a: "On phone, tablet, kiosk, or computer against the restaurant host. The floor and kitchen can finish open tables even if the outside line drops.",
+  },
+  {
+    q: "Where are longer notes?",
+    a: "API, accessibility, and India receipt notes live in the docs that ship with the install.",
   },
 ];
 
 export default function HowToUsePage() {
   return (
-    <SiteFrame page={{ path: "/orderlyPOS/how-to-use", name: "How to use" }}>
-      <section className="mx-auto max-w-6xl px-5 py-16 sm:px-6 sm:py-20">
-        <p className="text-sm font-medium text-primary">How to use</p>
-        <h1 className="mt-3 max-w-3xl text-4xl font-medium tracking-tight text-balance sm:text-5xl">
-          One service, from the door to the drawer.
-        </h1>
-        <p className="mt-4 max-w-2xl text-muted-foreground">
-          Sign in on the restaurant computer, seat a table or start a takeaway, ring the order, cook
-          one step at a time, print the bill, then take the money. Printing the bill does not close
-          the table. The longer reference for the API, accessibility, and India receipts is in the docs.
-        </p>
-        <ol className="mt-10 flex flex-col gap-4">
-          {steps.map((step, index) => (
-            <li key={step.title} className="grid gap-3 border-b border-border py-5 sm:grid-cols-[3rem_1fr]">
-              <p className="text-sm tabular-nums text-muted-foreground">{String(index + 1).padStart(2, "0")}</p>
-              <div>
-                <h2 className="text-xl font-semibold tracking-tight">{step.title}</h2>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{step.body}</p>
-              </div>
-            </li>
-          ))}
-        </ol>
-        <div className="mt-8">
-          <Link href="/orderlyPOS/docs" className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground">
-            Docs
-          </Link>
-        </div>
-      </section>
+    <SiteFrame
+      page={{ path: "/orderlyPOS/how-to-use", name: "How to use" }}
+      ctaTitle="Open the till on any staff device."
+      ctaBody="Phone, tablet, kiosk, or computer. Creating an account does not charge a card."
+    >
+      <MarketingHeroBand>
+        <SitePageHero
+          eyebrow="How to use"
+          title="One service, from the door to the drawer."
+          body="Sign in on any staff device, seat a table or start a takeaway, ring the order, cook one step at a time, print the bill, then take the money."
+          actions={[
+            { href: "/signup", label: "Try now OrderlyPOS", primary: true },
+            { href: "/orderlyPOS/features", label: "Every screen" },
+            { href: "/orderlyPOS/docs", label: "Docs" },
+          ]}
+        />
+      </MarketingHeroBand>
+      <HomePromises />
+      <SiteReveal className="mx-auto max-w-6xl px-5 pb-16 sm:px-6">
+        <AnimatedSteps items={steps} markKey="index" />
+      </SiteReveal>
+      <SiteFaq title="About a service day" items={faqs} />
+      <SiteRelated items={[relatedProduct[0]!, relatedLearn[1]!, relatedProduct[1]!]} />
     </SiteFrame>
   );
 }

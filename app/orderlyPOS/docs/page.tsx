@@ -1,80 +1,109 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import {
+  AnimatedGuideGroups,
+  FeatureCountStrip,
+  MarketingHeroBand,
+} from "@/components/site/marketing-page-band";
+import { FEATURE_COUNTS, featureCountLine } from "@/components/site/screens";
 import { SiteFrame } from "@/components/site/site-frame";
+import { SitePageHero } from "@/components/site/site-page-hero";
+import { SiteRelated } from "@/components/site/site-related";
+import { relatedCompany, relatedProduct } from "@/components/site/site-related-sets";
+import { SiteReveal } from "@/components/site/site-motion";
 import { publicMeta } from "@/lib/seo";
 
 export const metadata: Metadata = publicMeta(
   "/orderlyPOS/docs",
   "Restaurant POS guides",
-  "How to use OrderlyPOS, what each screen is for, how Ask works, the API, accessibility, and notes for restaurants in India.",
+  `Guides for OrderlyPOS: how to use, features (${featureCountLine}), Ask, pricing, API, accessibility, and India compliance.`,
 );
 
-const guides = [
+const groups = [
   {
-    href: "/orderlyPOS/how-to-use",
-    title: "How to use",
-    description: "A service from seating the table to closing the drawer.",
+    title: "Product",
+    guides: [
+      {
+        href: "/orderlyPOS/how-to-use",
+        title: "How to use",
+        description: "From seating the table to closing the drawer — one service day.",
+      },
+      {
+        href: "/orderlyPOS/features",
+        title: "Features",
+        description: `${FEATURE_COUNTS.modules} modules, ${FEATURE_COUNTS.screens}+ staff screens, ${FEATURE_COUNTS.settings} settings areas, and ${FEATURE_COUNTS.guestChannels} order channels — with live captures.`,
+      },
+      {
+        href: "/orderlyPOS/agent",
+        title: "Agent",
+        description: "Ask reads the open branch. Staff still ring the bill. Rules can notify every five minutes.",
+      },
+      {
+        href: "/orderlyPOS/pricing",
+        title: "Pricing",
+        description: "Starter ₹2,999, Growth ₹4,999, Pro ₹6,999, Enterprise ₹12,999 a month per outlet. Yearly is 20% less.",
+      },
+    ],
   },
   {
-    href: "/orderlyPOS/features",
-    title: "Features",
-    description: "What the till, kitchen, stock room, books, and agent can do.",
+    title: "Technical",
+    guides: [
+      {
+        href: "/docs/api",
+        title: "API and MCP",
+        description: "REST for your website backend, or MCP for an AI client with the same staff permissions.",
+      },
+      {
+        href: "/docs/accessibility",
+        title: "Accessibility",
+        description: "Keyboard, screen reader, and reduced-motion behaviour.",
+      },
+      {
+        href: "/docs/compliance-india",
+        title: "India compliance",
+        description: "GST, receipts, and where guest and staff data sits when you run OrderlyPOS in India.",
+      },
+    ],
   },
   {
-    href: "/orderlyPOS/agent",
-    title: "Agent",
-    description: "How staff ask the live service, and how an assistant acts through MCP.",
-  },
-  {
-    href: "/docs/api",
-    title: "API and MCP",
-    description: "Use OrderlyPOS as the backend for a website, or connect an AI client.",
-  },
-  {
-    href: "/docs/accessibility",
-    title: "Accessibility",
-    description: "Keyboard, screen reader, and reduced-motion behaviour.",
-  },
-  {
-    href: "/docs/compliance-india",
-    title: "India compliance",
-    description: "GST, receipts, and where the data sits when you run OrderlyPOS in India.",
-  },
-  {
-    href: "/orderlyPOS/terms",
-    title: "Terms and conditions",
-    description: "The plan, the install on the restaurant’s computer, and what the software will not pretend to do.",
-  },
-  {
-    href: "/orderlyPOS/privacy",
-    title: "Privacy policy",
-    description: "What this site collects, and what stays on the restaurant’s own computer.",
+    title: "Legal",
+    guides: [
+      {
+        href: "/orderlyPOS/terms",
+        title: "Terms and conditions",
+        description: "The plan, the install, and what the software will not pretend to do.",
+      },
+      {
+        href: "/orderlyPOS/privacy",
+        title: "Privacy policy",
+        description: "What this site collects, and what stays on the restaurant host.",
+      },
+    ],
   },
 ];
 
 export default function SiteDocsPage() {
   return (
     <SiteFrame page={{ path: "/orderlyPOS/docs", name: "Guides" }}>
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-        <p className="text-sm text-muted-foreground">Docs</p>
-        <h1 className="mt-3 max-w-3xl text-4xl font-semibold tracking-tight sm:text-5xl">
-          Read the part you need.
-        </h1>
-        <p className="mt-4 max-w-2xl text-muted-foreground">
-          Short guides live on this site. The API, accessibility, and India receipt notes
-          open in the documentation that ships with the install.
-        </p>
-        <ul className="mt-10 grid gap-4 md:grid-cols-2">
-          {guides.map((guide) => (
-            <li key={guide.href}>
-              <Link href={guide.href} className="block border-b border-border py-4">
-                <h2 className="text-lg font-semibold">{guide.title}</h2>
-                <p className="mt-2 text-sm text-muted-foreground">{guide.description}</p>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </section>
+      <MarketingHeroBand>
+        <SitePageHero
+          eyebrow="Docs"
+          title="Read the part you need."
+          body={`${featureCountLine}. Short product guides live here. API, accessibility, and India receipt notes open in the technical docs.`}
+          actions={[
+            { href: "/orderlyPOS/features", label: "Features", primary: true },
+            { href: "/orderlyPOS/how-to-use", label: "How to use" },
+            { href: "/docs/api", label: "API and MCP" },
+            { href: "/contact", label: "Ask Contrivya" },
+          ]}
+        />
+      </MarketingHeroBand>
+
+      <FeatureCountStrip />
+
+      <SiteReveal className="mx-auto max-w-6xl px-5 py-16 sm:px-6">
+        <AnimatedGuideGroups groups={groups} />
+      </SiteReveal>
+      <SiteRelated items={[...relatedProduct.slice(0, 2), relatedCompany[1]!]} />
     </SiteFrame>
   );
 }

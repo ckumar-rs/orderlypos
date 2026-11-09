@@ -1,18 +1,22 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { AnimatedSteps, MarketingHeroBand } from "@/components/site/marketing-page-band";
 import { SiteFrame } from "@/components/site/site-frame";
+import { SitePageHero } from "@/components/site/site-page-hero";
+import { SiteRelated } from "@/components/site/site-related";
+import { SiteReveal } from "@/components/site/site-motion";
 import { publicMeta } from "@/lib/seo";
 
 export const metadata: Metadata = publicMeta(
   "/orderlyPOS/privacy",
   "Privacy policy",
-  "What the OrderlyPOS public site stores, what stays on the restaurant computer, and how to ask Contrivya about a message you sent.",
+  "What the OrderlyPOS public site stores, what stays on the restaurant host, and how to ask Contrivya about a message you sent.",
 );
 
 const sections = [
   {
     title: "Two different places",
-    body: "This policy covers the public OrderlyPOS site and the software a restaurant installs. They are not the same store of data. The public pages describe the product. The till, the kitchen, the kiosk, and the books run on a computer the restaurant controls. For guest and staff records on that computer, the restaurant is the data fiduciary under the Digital Personal Data Protection Act, 2023. Contrivya does not receive that database.",
+    body: "This policy covers the public OrderlyPOS site and the software a restaurant installs. They are not the same store of data. The public pages describe the product. The till, the kitchen, the kiosk, and the books run on a host the restaurant controls. For guest and staff records on that host, the restaurant is the data fiduciary under the Digital Personal Data Protection Act, 2023. Contrivya does not receive that database.",
   },
   {
     title: "The public site",
@@ -28,7 +32,7 @@ const sections = [
   },
   {
     title: "Messages and connectors",
-    body: "Email, SMS, and WhatsApp leave the restaurant’s computer only when a rule or a person sends them, and only after that provider’s address and secret are stored in Settings. A model phrases an Ask answer only when the restaurant has stored a model URL, a model id, and a token. The records sent for phrasing are the ones already printed for that question. A payment gateway, a delivery platform, or Tally is contacted only after its address and secret are stored.",
+    body: "Email, SMS, and WhatsApp leave the restaurant’s host only when a rule or a person sends them, and only after that provider’s address and secret are stored in Settings. A model phrases an Ask answer only when the restaurant has stored a model URL, a model id, and a token. The records sent for phrasing are the ones already printed for that question. A payment gateway, a delivery platform, or Tally is contacted only after its address and secret are stored.",
   },
   {
     title: "How long it is kept",
@@ -36,7 +40,7 @@ const sections = [
   },
   {
     title: "Asking about your data",
-    body: "A guest or a staff member asks the restaurant that served them. That restaurant holds the record. A question about this public site, or about an email you sent to Contrivya, goes to info@contrivya.com. Contrivya will reply about the site and about messages it actually received. It cannot open a guest book that lives only on a restaurant’s computer.",
+    body: "A guest or a staff member asks the restaurant that served them. That restaurant holds the record. A question about this public site, or about an email you sent to Contrivya, goes to info@contrivya.com. Contrivya will reply about the site and about messages it actually received. It cannot open a guest book that lives only on a restaurant’s host.",
   },
   {
     title: "Children",
@@ -51,28 +55,20 @@ const sections = [
 export default function PrivacyPage() {
   return (
     <SiteFrame page={{ path: "/orderlyPOS/privacy", name: "Privacy" }}>
-      <section className="mx-auto max-w-5xl px-4 pt-12 pb-16">
-        <p className="text-sm text-muted-foreground">27 October 2026</p>
-        <h1 className="mt-3 max-w-2xl text-4xl font-semibold tracking-tight">Privacy policy</h1>
-        <p className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground">
-          Contrivya builds OrderlyPOS. This policy says what the public site collects, and what stays
-          on the restaurant’s own computer. Write to{" "}
-          <a href="mailto:info@contrivya.com" className="font-medium text-foreground underline-offset-4 hover:underline">
-            info@contrivya.com
-          </a>{" "}
-          about this page.
-        </p>
-        <ol className="mt-10 border-t border-border">
-          {sections.map((section, index) => (
-            <li key={section.title} className="grid gap-2 border-b border-border py-5 sm:grid-cols-[3rem_1fr] sm:gap-6">
-              <p className="text-sm tabular-nums text-muted-foreground">{String(index + 1).padStart(2, "0")}</p>
-              <div>
-                <h2 className="text-lg font-semibold tracking-tight">{section.title}</h2>
-                <p className="mt-2 max-w-prose text-sm leading-relaxed text-muted-foreground">{section.body}</p>
-              </div>
-            </li>
-          ))}
-        </ol>
+      <MarketingHeroBand>
+        <SitePageHero
+          eyebrow="27 October 2026"
+          title="Privacy policy"
+          body="What the public site collects, and what stays on the restaurant’s own host. Write to info@contrivya.com about this page."
+          actions={[
+            { href: "/orderlyPOS/terms", label: "Terms", primary: true },
+            { href: "/docs/compliance-india", label: "India compliance" },
+            { href: "mailto:info@contrivya.com", label: "Email Contrivya" },
+          ]}
+        />
+      </MarketingHeroBand>
+      <SiteReveal className="mx-auto max-w-5xl px-5 pb-16 sm:px-6">
+        <AnimatedSteps items={sections} markKey="index" />
         <p className="mt-8 text-sm text-muted-foreground">
           The commercial terms are on the{" "}
           <Link href="/orderlyPOS/terms" className="font-medium text-foreground underline-offset-4 hover:underline">
@@ -84,7 +80,15 @@ export default function PrivacyPage() {
           </Link>
           .
         </p>
-      </section>
+      </SiteReveal>
+      <SiteRelated
+        title="Related"
+        items={[
+          { href: "/orderlyPOS/terms", title: "Terms", body: "Plans, install, and acceptable use." },
+          { href: "/docs/compliance-india", title: "India compliance", body: "GST, receipts, and data fiduciary notes." },
+          { href: "/contact", title: "Contact", body: "Ask Contrivya about this policy." },
+        ]}
+      />
     </SiteFrame>
   );
 }

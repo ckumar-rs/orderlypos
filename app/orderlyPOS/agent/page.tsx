@@ -1,7 +1,13 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { AgentTalk } from "@/components/site/agent-talk";
+import { HomePromises } from "@/components/site/home-promises";
+import { AnimatedSteps, MarketingHeroBand } from "@/components/site/marketing-page-band";
+import { SiteFaq } from "@/components/site/site-faq";
 import { SiteFrame } from "@/components/site/site-frame";
+import { SitePageHero } from "@/components/site/site-page-hero";
+import { SiteRelated } from "@/components/site/site-related";
+import { relatedLearn, relatedProduct } from "@/components/site/site-related-sets";
+import { SiteReveal } from "@/components/site/site-motion";
 import { publicMeta } from "@/lib/seo";
 
 export const metadata: Metadata = publicMeta(
@@ -47,58 +53,56 @@ const steps = [
   },
 ];
 
+const faqs = [
+  {
+    q: "Can Ask take a payment?",
+    a: "No. Ask reads sales, tickets, stock, and reservations. Staff still ring the bill on the till.",
+  },
+  {
+    q: "Do rules run when nobody is signed in?",
+    a: "Yes. Every five minutes an active rule can look for a paid bill, low stock, or today’s reservations, then notify by the channels Settings allows.",
+  },
+  {
+    q: "What is MCP for?",
+    a: "An outside assistant connected with a staff login can use the same permissions as that person on the screen — not a second, wider role.",
+  },
+];
+
 export default function AgentPage() {
   return (
-    <SiteFrame page={{ path: "/orderlyPOS/agent", name: "Agent" }}>
-      <section className="mx-auto max-w-6xl px-5 pt-16 pb-20 sm:px-6 sm:pt-20">
-        <p className="text-sm font-medium text-primary">Agentic Restaurant POS</p>
-        <h1 className="mt-3 max-w-3xl text-4xl font-medium tracking-tight text-balance sm:text-5xl">
-          The floor closes. The books keep being checked.
-        </h1>
-        <p className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground">
-          OrderlyPOS is the system on the till, the kitchen, and the kiosk. Ask is how staff
-          read it during service. Around the clock, the same books are checked every five
-          minutes, with no one standing at the screen.
-        </p>
+    <SiteFrame
+      page={{ path: "/orderlyPOS/agent", name: "Agent" }}
+      ctaTitle="Put Ask on the open branch."
+      ctaBody="Ask reads sales and tickets. Staff still ring the bill."
+    >
+      <MarketingHeroBand>
+        <SitePageHero
+          eyebrow="Agentic Restaurant POS"
+          title="The floor closes. The books keep being checked."
+          body="OrderlyPOS is the system on the till, the kitchen, and the kiosk. Ask is how staff read it during service. Around the clock, the same books are checked every five minutes."
+          actions={[
+            { href: "/signup", label: "Try now OrderlyPOS", primary: true },
+            { href: "/orderlyPOS/features", label: "Every screen" },
+            { href: "/docs/api", label: "API and MCP" },
+          ]}
+        />
+      </MarketingHeroBand>
+      <HomePromises />
+      <SiteReveal className="mx-auto max-w-6xl px-5 pb-8 sm:px-6">
         <AgentTalk />
+      </SiteReveal>
+      <section className="mx-auto max-w-6xl px-5 pb-16 sm:px-6">
+        <AnimatedSteps items={day} markKey="mark" />
 
-        <ol className="mt-10 border-t border-border" aria-label="A day on the books">
-          {day.map((beat) => (
-            <li
-              key={beat.mark}
-              className="grid gap-2 border-b border-border py-6 sm:grid-cols-[7rem_1fr] sm:gap-8"
-            >
-              <p className="text-sm font-medium tabular-nums text-primary">{beat.mark}</p>
-              <div>
-                <h2 className="text-lg font-semibold tracking-tight">{beat.title}</h2>
-                <p className="mt-2 max-w-prose text-sm leading-relaxed text-muted-foreground">{beat.body}</p>
-              </div>
-            </li>
-          ))}
-        </ol>
-
-        <h2 className="mt-14 text-2xl font-semibold tracking-tight">How that is built</h2>
-        <ol className="mt-4 border-t border-border">
-          {steps.map((step, index) => (
-            <li key={step.title} className="grid gap-2 border-b border-border py-5 sm:grid-cols-[3rem_1fr] sm:gap-6">
-              <p className="text-sm tabular-nums text-muted-foreground">{String(index + 1).padStart(2, "0")}</p>
-              <div>
-                <h3 className="text-lg font-semibold tracking-tight">{step.title}</h3>
-                <p className="mt-2 max-w-prose text-sm leading-relaxed text-muted-foreground">{step.body}</p>
-              </div>
-            </li>
-          ))}
-        </ol>
-
-        <div className="mt-8 flex flex-wrap gap-3">
-          <Link href="/orderlyPOS/features" className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground">
-            Screens
-          </Link>
-          <Link href="/docs/api" className="rounded-md border border-border px-4 py-2 text-sm font-medium">
-            API and MCP
-          </Link>
+        <SiteReveal>
+          <h2 className="mt-14 text-2xl font-medium tracking-tight">How that is built</h2>
+        </SiteReveal>
+        <div className="mt-4">
+          <AnimatedSteps items={steps} markKey="index" />
         </div>
       </section>
+      <SiteFaq title="About Ask and automations" items={faqs} />
+      <SiteRelated items={[...relatedProduct.filter((i) => i.href !== "/orderlyPOS/agent"), relatedLearn[0]!]} />
     </SiteFrame>
   );
 }
